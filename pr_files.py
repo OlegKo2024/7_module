@@ -1,4 +1,12 @@
-print('Режимы открытия файлов')
+print('Задача "Учёт товаров"')
+# Вы почти справились с заданием, однако ваш код требует доработки:
+# - класс Shop не должен наследоваться от класса Product.
+# - ваш метод get_products не возвращает никакого значения, что по умолчанию означает None. По заданию он должен
+# возвращать (return) единую строку со всеми товарами из файла __file_name.
+# - при проверке на существование товара в методе add можно вызывать метод get_products для получения текущих продуктов.
+# - также у вас в файле записывается первая строка пустая.
+# Прошу доработать и направить решение повторно.
+
 from pprint import pprint
 class Product:
 
@@ -10,7 +18,7 @@ class Product:
     def __str__(self):
         return f'{self.name}, {self.weight}, {self.category}'
 
-class Shop(Product):
+class Shop:
 
     def __init__(self):
         self.__file_name = 'products.txt'
@@ -19,17 +27,19 @@ class Shop(Product):
 # строку со всеми товарами из файла __file_name.
 
     def get_products(self):
-        file = open(self.__file_name, 'r')
-        pprint(file.read())
+        file = open(self.__file_name, 'r')    # открыли файл
+        read_file = file.read()               # считали содержимое файла
         file.close()
+        return read_file
 
-# Метод add(self, *products), который принимает неограниченное количество объектов класса
-# Product. Добавляет в файл __file_name каждый продукт из products, если его ещё нет в файле (по названию).
-# Если такой продукт уже есть, то не добавляет и выводит строку 'Продукт <название> уже есть в магазине' .
+# Метод add(self, *products), который принимает неограниченное количество объектов класса Product.
+# Добавляет в файл __file_name каждый продукт из products, если его ещё нет в файле (по названию).
+# Если такой продукт уже есть, то не добавляет и выводит строку 'Продукт <название> уже есть в магазине'
     def add(self, *products):
         file = open(self.__file_name, 'a')
+        scanned_file = self.get_products()
         for item in products:
-            if item.name not in self.__file_name:
+            if item.name not in scanned_file:
                 file.write(f'\n{item}')
             else:
                 print(f'Продукт {item.name} уже есть в магазине')
