@@ -47,9 +47,9 @@ class WordsFinder:
             key = file_name
             if any(word.lower() == file_word for file_word in word_list): # немного иначе проверяем был ли мальчик
                 count = word_list.count(word.lower()) # считаем сколько их
+                count_word[key] = count  # записываем в словарь
             else:
                 print(f'{word} not found in {all_words}')
-            count_word[key] = count # записываем в словарь
         return count_word
 
 
