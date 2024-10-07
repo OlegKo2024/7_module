@@ -38,7 +38,18 @@ class WordsFinder:
     # Например:
         # При создании экземпляра `WordsFinder`, метод `__init__` вызывается автоматически. Здесь `self.file_names`
         # будет хранить список имен файлов, переданных при создании объекта. Если, например, вы создали экземпляр
-        # finder = WordsFinder("file1.txt", "file2.txt")` - `self.file_names` станет равным `["file1.txt", "file2.txt"]`
+        # finder = WordsFinder("file1.txt", "file2.txt")` - `self.file_names` РАВЕН `["file1.txt", "file2.txt"]`
+        # Вызываем метод `get_all_words` ДЛЯ ТЕКУЩЕГО ЭКЗЕМПЛЯРА КЛАССА `WordsFinder`. Этот метод возвращает словарь,
+        # содержащий все слова из файлов, указанных в `self.file_names`, и мы присваиваем этот результат переменной
+        # `all_words` в методе `find` и 'count'.
+        # Итак, когда выражение `all_words = self.get_all_words()` выполняется в методе `find`, происходит следующее:
+            # 1. Сначала Python понимает, что мы вызываем метод `get_all_words` текущего объекта (экземпляра класса).
+            # 2. Метод `get_all_words` перебирает имена файлов, относящ. к этому экземпляру (через `self.file_names`).
+            # 3. Он открывает каждый файл по указанным именам и извлекает слова из него, формируя словарь `all_words`,
+            # где ключами являются имена файлов, а значениями — списки слов из этих файлов.
+            # По завершении выполнения `get_all_words`, возвращается результат (словарь), который затем присваивается
+            # переменной `all_words` в методе `find`
+
 
     def find(self, word):
         find_word = {}
@@ -91,9 +102,9 @@ class WordsFinder:
             if any(word.lower() == file_word for file_word in word_list):
                 for file_word in word_list:
                     count = word_list.count(word.lower())
+                    count_word[key] = count
             else:
                 print(f'{word} not found in {all_words}')
-            count_word[key] = count
         return count_word
 
 
