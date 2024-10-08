@@ -8,8 +8,7 @@ print('Текущая директория:', os.getcwd())
 current_file_path = os.path.abspath(__file__)
 print(current_file_path)
 
-for root, dirs, files in os.walk('.'):  # Обход каталога с os.walk() - возвращает кортеж для каждой директории, где
-    # root - текущая директория, dirs - подкаталоги, а files - файлы в текущем каталоге
+for root, dirs, files in os.walk('.'):  # Обход каталога с os.walk c текущей папки
     for file in files:
         filepath = os.path.join(root, file)     # Формирование полного пути к файлу
         print(f'Обнаружен файл: {file}, Путь: {filepath}')
