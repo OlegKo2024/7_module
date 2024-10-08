@@ -1,8 +1,8 @@
 
 print('Файлы в операционной системе')
-
 import os
-import time
+# import time
+
 
 print('Текущая директория:', os.getcwd())
 current_file_path = os.path.abspath(__file__)
@@ -20,12 +20,12 @@ file_stat = os.stat(r'.\pr_files_in_os.py')
 print(file_stat)
 file_time_stat = file_stat.st_mtime
 print(file_time_stat)
-file_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(file_time_stat))
+from time import strftime, localtime
+file_time = strftime("%d.%m.%Y %H:%M", localtime(file_time_stat))
 print(file_time)
-
 filetime = os.path.getmtime(current_file_path) # Получение времени последнего изменения файла
 print(filetime)
-formatted_time = time.strftime("%d.%m.%Y %H:%M", time.localtime(filetime)) # Форматирование времени
+formatted_time = strftime("%d.%m.%Y %H:%M", localtime(filetime)) # Форматирование времени
 print(formatted_time)
 filesize = os.path.getsize(current_file_path)
 
